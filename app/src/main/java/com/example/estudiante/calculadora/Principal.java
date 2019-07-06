@@ -3,20 +3,39 @@ package com.example.estudiante.calculadora;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class Principal extends AppCompatActivity {
     TextView resultado;
     EditText num1,num2;
     double n1, n2, suma;
+    String opciones[];
+    Spinner combo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+        // Captura de los objetos utilizados
         num1 = findViewById(R.id.txtNumeroUno);
         num2 = findViewById(R.id.txtNumeroDos);
         resultado = findViewById(R.id.txtResultado);
+        combo = findViewById(R.id.cmbOperacion);
+
+        // Traemos las opciones de un array de Strings
+        opciones = getResources().getStringArray(R.array.operaciones);
+
+        // Creamos el Adapter indicando, donde se va a colocar
+        // como se va a visualzar y que se va a mostrar
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item,opciones);
+
+        // Pasamos el adapter al combo
+        combo.setAdapter(adapter);
+
+
 
     }
 
